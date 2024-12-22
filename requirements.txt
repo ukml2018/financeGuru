@@ -1,0 +1,9 @@
+Flask
+gunicorn
+phi
+dotenv
+markdown2
+streamlit
+os
+
+
