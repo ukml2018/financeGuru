@@ -3,6 +3,8 @@ gunicorn
 phidata
 markdown2
 streamlit
+groq
+
 
 
 
