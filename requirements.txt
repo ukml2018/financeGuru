@@ -4,6 +4,7 @@ phidata
 markdown2
 streamlit
 groq
+yfinance
 
 
 
