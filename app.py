@@ -4,8 +4,8 @@ from phi.agent import Agent
 from phi.model.groq import Groq
 import streamlit as st
 #python -m streamlit run app.py
-import os
-import markdown2
+#import os
+#import markdown2
 from phi.tools.yfinance import YFinanceTools
 #import groq
 from dotenv import load_dotenv
@@ -30,7 +30,8 @@ input_prompt="""
  """
 
 if st.button("Get Detailed Notes"):
-    
+ with open('tmp/finance.md', 'w', encoding='utf-8') as f:
+    #    f.write("Testing")
     agent=Agent(
     #model = Groq(id="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
     model = Groq(id="llama-3.3-70b-versatile"),
@@ -41,7 +42,7 @@ if st.button("Get Detailed Notes"):
     instructions=input_prompt,
     #instructions=["Display data in non tabular format."],
     structured_outputs=True,
-    save_response_to_file="tmp/finance.md",
+    save_response_to_file="tmp/finance.md",    
     #debug_mode=True
     )
     #agent.print_response("Write the performance of Infosys stock")

@@ -1,9 +1,8 @@
 Flask
 gunicorn
-phi
-dotenv
+phidata
 markdown2
 streamlit
-os
+
 
 
