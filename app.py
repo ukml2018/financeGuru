@@ -7,7 +7,7 @@ import streamlit as st
 #import os
 #import markdown2
 from phi.tools.yfinance import YFinanceTools
-from phi.model.openai import OpenAIChat
+#from phi.model.openai import OpenAIChat
 from phi.tools.duckduckgo import DuckDuckGo
 #import groq
 from dotenv import load_dotenv
@@ -36,22 +36,42 @@ input_prompt="""
 if st.button("Get Detailed Notes"):
  with open('tmp/finance.md', 'w', encoding='utf-8') as f:
     #    f.write("Testing")
-    agent=Agent(
+    web_agent = Agent (
+    name="Web Agent",
+    model = Groq(id="llama-3.3-70b-versatile"),
+    #model = Groq(id="llama3-70b-8192"),
+    #model = Groq(id="llama-3.1-8b-instant"),
+    #model = OpenAIChat(id="gpt-4o"),
+    tools=[DuckDuckGo()],
+    instructions=["Always inclue sources"],
+    show_tool_calls=True,
+    markdown=True
+    )
+    
+    finance_agent=Agent(
     #model = Groq(id="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
     model = Groq(id="llama-3.3-70b-versatile"),
+    #model = OpenAIChat(id="gpt-4o"),
     tools = [YFinanceTools(stock_price=True, analyst_recommendations= True, stock_fundamentals=True)],
     show_tool_calls=True,
     markdown=True,
     #instructions=["Use table to display data."],
     instructions=input_prompt,
     #instructions=["Display data in non tabular format."],
-    structured_outputs=True,
-    save_response_to_file="tmp/finance.md",    
+    #structured_outputs=True
+    #save_response_to_file="tmp/finance.md",    
     #debug_mode=True
+    )
+    agent_team = Agent(
+    team=[web_agent,finance_agent],
+    instructions=["Always include sources","Use tables to display data"],
+    show_tool_calls=True,
+    markdown=True,
+    save_response_to_file="tmp/finance.md"
     )
     #agent.print_response("Write the performance of Infosys stock")
     #agent.print_response("Summarize and compare analyst recommendations and fundamentals for TSLA and NVDA")
-    agent.print_response(input)
+    agent_team.print_response(input)
     with open('tmp/finance.md', 'r') as file:
         markdown_content = file.read()
     if markdown_content:
