@@ -6,10 +6,3 @@ streamlit
 groq
 yfinance
 openai
-duckduckgo
-urllib2
-
-
-
-
-
