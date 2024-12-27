@@ -3,7 +3,7 @@
 from phi.agent import Agent
 from phi.model.groq import Groq
 import streamlit as st
-#python -m streamlit run
+#python -m streamlit run <app name>
 import os
 import markdown2
 from phi.tools.yfinance import YFinanceTools

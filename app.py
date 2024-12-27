@@ -16,17 +16,19 @@ st.header("Investment model")
 input=st.text_input("Enter Your Question: ",key="input")
 #submit=st.button("Tell me the total calories")
 input_prompt=""" 
-   Use table to display data.
+   Use table to display financial data.
    Use Finance data to calculate average price and Variance of the stock
    USE https://corporatefinanceinstitute.com/  to calculate the CAPM
    Use variances to find the co-variance
    Find the weights based on highest portfolio mean, which is measured based on portfolio variance and weights of the individual stock
    Consider different weight combinations to consider optimum weight mix for highest return
    Generate the portfolio frontier graph
-   Give the data output the foloowing format
+   Give the data output for the inventory portfolio analysis in the following format:
    Weight of Stock 1  |  Weight od Stock 2 | Portfolio Mean | Portfolio variance 
    Give the Financial summary of the calculated portfolio analysis
    For Non financial analysis give the output in non tabular format without any financial calculation
+   A low P/E ratio compared to the industry average or historical levels may indicate an undervalued stock. Price-to-Book (P/B) Ratio: If the P/B ratio is lower than 1, it suggests the stock is trading below its book value, potentially indicating undervaluation
+   For stock price analysis provide other stock data from similar industry in tabular format
  """
 
 if st.button("Get Detailed Notes"):
