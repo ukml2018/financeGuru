@@ -64,8 +64,9 @@ if st.button("Get Detailed Notes"):
     )
     agent_team = Agent(
     team=[web_agent,finance_agent],
-    instructions=["Always include sources","Use tables to display data"],
-    show_tool_calls=True,
+    #instructions=["Always include sources","Use tables to display data"],
+    instructions=["Always include sources",input_prompt],
+    #show_tool_calls=True,
     markdown=True,
     save_response_to_file="tmp/finance.md"
     )
